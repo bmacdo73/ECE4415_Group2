@@ -71,6 +71,7 @@
                     child.material = new THREE.MeshStandardMaterial({color: 0x2c2017, flatShading: true});
                 }
             })
+            gltf.scene.position.set(-0.075,0,-0.1);
             scene.add(gltf.scene);
         }, undefined, function (error) {
             console.error(error);

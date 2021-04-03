@@ -14,6 +14,84 @@
 <body>
     <h1>The AGGV Online Collection</h1>
     <script src="https://threejs.org/build/three.min.js"></script>
+    <script type="module">
+        //I don't like doing this in the html file but it's necessary for it to function properly
+
+        /*
+        *----------------------------------------------------------------------------------------------------------
+        *
+        *    three.js setup
+        *
+        *----------------------------------------------------------------------------------------------------------
+        */
+        //import GLTFLoader files from the CDN
+        import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three/examples/jsm/loaders/GLTFLoader.js';
+        //import OrbitControls files from the CDN
+        import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three/examples/jsm/controls/OrbitControls.js';
+
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xE0E0E0);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+        const controls = new OrbitControls(camera, renderer.domElement);
+
+        /*
+        *----------------------------------------------------------------------------------------------------------
+        *
+        *    GLTFLoader() - .glb file imports
+        *
+        *----------------------------------------------------------------------------------------------------------
+        */
+        //add 3dbenchy
+        const loader = new GLTFLoader();
+        loader.load("./3d/3dbenchy.glb", function (gltf) {
+            //define the material
+            const material = new THREE.MeshStandardMaterial({color: 0xaa5555});
+            gltf.material = material;
+            scene.add(gltf.scene);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        //add Vancouver Totem Pole
+        loader.load("./3d/vancouverTotemPole.glb", function(gltf){
+            scene.add(gltf.scene);
+        }, undefined, function (error) {
+            console.error(error);
+        });
+
+        //---------------------------------------------------------------------------------------------------------
+
+        //add lighting
+        var ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+        scene.add(ambientLight)
+        var pointLight = new THREE.PointLight(0xffffff, 1);
+        pointLight.position.set(25, 50, 25);
+        scene.add(pointLight);
+
+        //set camera back a bit to see the object without it clipping
+        camera.position.z = 0.2;
+        //controls.update() must be called aftr any manual changes to the camera's transform
+        controls.update();
+
+        //NO TOUCH BELOW HERE
+        animate();
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            //required if controls.enableDamping or controls.autoRotate are set to true
+            controls.update();
+
+            render();
+        };
+
+        function render() {
+            renderer.render(scene, camera);
+        }
+    </script>
 </body>
 
 </html>

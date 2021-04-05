@@ -1,0 +1,21 @@
+{
+  "name": "ece4415_group2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "sandbox.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bmacdo73/ECE4415_Group2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bmacdo73/ECE4415_Group2/issues"
+  },
+  "homepage": "https://github.com/bmacdo73/ECE4415_Group2#readme"
+}

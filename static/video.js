@@ -1,3 +1,4 @@
+import * from './sandbox.mjs';
 
 //FINAL VARIABLES
 let video = null; //Holds the video feed from the webcam

@@ -11,13 +11,14 @@
     </style>
 </head>
 
-<body>
+<body onload = 'startup()'>
     <h1>The AGGV Online Collection</h1>
     <div class="cameraControlButtons">
         <button name="rotateTestLeft" id="rotateTestLeft">Rotate Left</button>
         <button name="rotateTestRight" id="rotateTestRight">Rotate Right</button>
         <button name="rotateTestUp" id="rotateTestUp">Rotate Up</button>
         <button name="rotateTestDown" id="rotateTestDown">Rotate Down</button>
+        <button id = "start" onclick = "startCapture()">Begin Recording</button>
     </div>
     <script src="https://threejs.org/build/three.min.js"></script>
     <script type="module">
@@ -181,6 +182,7 @@
             renderer.render(scene, camera);
         };
     </script>
+    <script src="video.ts"></script>
 </body>
 
 </html>

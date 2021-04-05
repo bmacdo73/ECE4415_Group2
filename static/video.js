@@ -1,3 +1,4 @@
+
 //FINAL VARIABLES
 let video = null; //Holds the video feed from the webcam
 let vidHeight = 0; //Video height
@@ -20,6 +21,8 @@ let yDivILast = 0; //Last index of the biggest division in the y axis
 
 let xP = 0; //Percentage of distance in x axis travelled
 let yP = 0; //Percentage of distance in y axis travelled
+
+let onStart = false; //Check if the recording has started already
 
 const pixelThresh = 0.4; //Threshold at which pixels have enough movement to be counted
 const idealWidth = 310; //The ideal value for width the program will seek from the webcam
@@ -62,6 +65,8 @@ function startup() {
 }
 
 function startCapture(){
+  if (!onStart){
+  onStart = true;
   console.log("start capture runs!");
   //TEST
   vidHeight = video.videoHeight;
@@ -73,15 +78,8 @@ function startCapture(){
   diffCanvas.width = vidWidth;
   diffContext = diffCanvas.getContext('2d');
 
-  //TEST
-  //Set up test canvas
-  //let testDiv = document.getElementById('testDiv');
-  //testDiv.height = vidHeight;
-  //testDiv.width = vidWidth;
-  //let testCanvas = document.getElementById('testCanvas');
-  //testCanvas.height = vidHeight;
-  //testCanvas.width = vidWidth;
   setInterval(blend, frameTime);  
+  }
 }
 
 //Function to stop the webcam
@@ -186,11 +184,13 @@ function blend() {
   if (xDivI < xDivILast){
     xMotion = "Right";
     xP += xDivILast - xDivI;
+    rotateRight();
   } else if (xDivI > xDivILast){
     xMotion = "Left";
     xP += xDivI - xDivILast;
+    rotateLeft();
   } else {
-    console.log("Percent travelled in x direction: " + xP/xDivAmount); 
+    //console.log("Percent travelled in x direction: " + xP/xDivAmount); 
     xP = 0;
     xMotion = "None"
   }
@@ -198,17 +198,19 @@ function blend() {
   if (yDivI < yDivILast){
     yMotion = "Up";
     yP += yDivILast - yDivI;
+    rotateUp();
   } else if (yDivI > yDivILast){
     yMotion = "Down";
     yP += yDivI - yDivILast;
+    rotateDown();
   } else {
     yMotion = "None"
-    console.log("Percent travelled in y direction: " + yP/yDivAmount); 
+    //console.log("Percent travelled in y direction: " + yP/yDivAmount); 
     yP = 0;
   }
 
-  document.getElementById('xMotionLabel').innerText = xMotion;
-  document.getElementById('yMotionLabel').innerText = yMotion;
+  //document.getElementById('xMotionLabel').innerText = xMotion;
+  //document.getElementById('yMotionLabel').innerText = yMotion;
   xDivILast = xDivI;
   yDivILast = yDivI;
 

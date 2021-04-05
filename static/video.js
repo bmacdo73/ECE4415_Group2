@@ -1,4 +1,4 @@
-import * from './sandbox.mjs';
+import { rotateUp, rotateDown, rotateLeft, rotateRight } from './sandbox.js';
 
 //FINAL VARIABLES
 let video = null; //Holds the video feed from the webcam
@@ -37,6 +37,11 @@ const yDivAmount = 3; //Amount of divisions in the y axis
 const xMult = 1.00; //How much more motion must be in new x division to count
 const yMult = 1.00; //How much more motion must be in new y division to count
 
+console.log("Script starting up!");
+  video = document.createElement('video');
+  video.height = idealHeight;
+  video.width = idealWidth;
+  video.autoplay = true;
 
 if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ audio: false,video: {width: {ideal:idealWidth},height: {ideal:idealHeight} }})
@@ -45,9 +50,9 @@ if (navigator.mediaDevices.getUserMedia) {
       video.srcObject = stream; 
 
     })
-    .catch(function (err0r) {
-      console.log("Something went wrong!");
-    });
+    // .catch(function (err0r) {
+    //   console.log("Something went wrong!");
+    // });
 }
 
 function startup() {
@@ -65,7 +70,8 @@ function startup() {
   }
 }
 
-function startCapture(){
+var btnStartCapture = document.getElementById("start");
+btnStartCapture.onclick = function startCapture(){
   if (!onStart){
   onStart = true;
   console.log("start capture runs!");

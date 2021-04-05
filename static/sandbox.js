@@ -102,10 +102,14 @@ var btnTestDown = document.getElementById("rotateTestDown");
 const x = new THREE.Vector3(1, 0, 0);
 const y = new THREE.Vector3(0, 1, 0);
 
+btnTestUp.onclick = rotateUp;
+btnTestDown.onclick = rotateDown;
+btnTestLeft.onclick = rotateLeft;
+btnTestRight.onclick = rotateRight;
+
 //Negative rotation along the x-axis
 //"Rotate Up"
-/*btnTestUp.onclick = function rotateUp(){*/
-var rotateUp = function () {
+function rotateUp() {
     console.log("\n" + "Negative rotation along the x-axis!");
     console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
     camera.position.applyAxisAngle(x, (-30 * Math.PI / 180));
@@ -114,8 +118,7 @@ var rotateUp = function () {
 }
 //Positive rotation along the x-axis
 //"Rotate Down"
-/*btnTestDown.onclick = function rotateDown(){*/
-var rotateDown = function () {
+function rotateDown() {
     console.log("\n" + "Positive rotation along the x-axis!");
     console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
     camera.position.applyAxisAngle(x, (30 * Math.PI / 180));
@@ -124,7 +127,6 @@ var rotateDown = function () {
 }
 //Negative rotation along the y-axis
 //"Rotate Left"
-/*btnTestLeft.onclick = function rotateLeft(){*/
 function rotateLeft() {
     console.log("\n" + "Negative rotation along the y-axis!");
     console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
@@ -134,8 +136,7 @@ function rotateLeft() {
 }
 //Positive rotation along the y-axis
 //"Rotate Right"
-/*btnTestRight.onclick = function rotateRight(){*/
-var rotateRight = function () {
+function rotateRight() {
     console.log("\n" + "Positive rotation along the y-axis!");
     console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
     camera.position.applyAxisAngle(y, (30 * Math.PI / 180));
@@ -159,3 +160,5 @@ function animate() {
     renderer.outputEncoding = THREE.sRGBEncoding;
     renderer.render(scene, camera);
 };
+
+export { rotateUp, rotateDown, rotateLeft, rotateRight };

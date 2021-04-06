@@ -110,38 +110,38 @@ btnTestRight.onclick = rotateRight;
 //Negative rotation along the x-axis
 //"Rotate Up"
 function rotateUp() {
-    console.log("\n" + "Negative rotation along the x-axis!");
-    console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
+    //console.log("\n" + "Negative rotation along the x-axis!");
+    //console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
     camera.position.applyAxisAngle(x, (-30 * Math.PI / 180));
     controls.update();
-    console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");
+    //console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");
 }
 //Positive rotation along the x-axis
 //"Rotate Down"
 function rotateDown() {
-    console.log("\n" + "Positive rotation along the x-axis!");
-    console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
+    //console.log("\n" + "Positive rotation along the x-axis!");
+    //console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
     camera.position.applyAxisAngle(x, (30 * Math.PI / 180));
     controls.update();
-    console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");
+    //console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");
 }
 //Negative rotation along the y-axis
 //"Rotate Left"
 function rotateLeft() {
-    console.log("\n" + "Negative rotation along the y-axis!");
-    console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
+    //console.log("\n" + "Negative rotation along the y-axis!");
+    //console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
     camera.position.applyAxisAngle(y, (-30 * Math.PI / 180));
     controls.update();
-    console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
+    //console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
 }
 //Positive rotation along the y-axis
 //"Rotate Right"
 function rotateRight() {
-    console.log("\n" + "Positive rotation along the y-axis!");
-    console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
+    //console.log("\n" + "Positive rotation along the y-axis!");
+    //console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
     camera.position.applyAxisAngle(y, (30 * Math.PI / 180));
     controls.update();
-    console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");
+    //console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");
 }
 
 

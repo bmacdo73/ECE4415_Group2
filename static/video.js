@@ -25,7 +25,7 @@ let yP = 0; //Percentage of distance in y axis travelled
 
 let onStart = false; //Check if the recording has started already
 
-const pixelThresh = 0.55; //Threshold at which pixels have enough movement to be counted
+const pixelThresh = 0.45; //Threshold at which pixels have enough movement to be counted
 const idealWidth = 310; //The ideal value for width the program will seek from the webcam
 const idealHeight = 240; //The ideal value for height the program will seek from the webcam
 const frameTime = 50; //Time in ms between frames
@@ -195,10 +195,12 @@ function blend() {
     xMotion = "Right";
     xP += xDivILast - xDivI;
     rotateRight();
+    console.log(xMotion);
   } else if (xDivI > xDivILast){
     xMotion = "Left";
     xP += xDivI - xDivILast;
     rotateLeft();
+    console.log(xMotion);
   } else {
     //console.log("Percent travelled in x direction: " + xP/xDivAmount); 
     xP = 0;
@@ -210,16 +212,20 @@ function blend() {
     yP += yDivILast - yDivI;
     rotateUp();
     rotateUp();
+    console.log(yMotion);
   } else if (yDivI > yDivILast){
     yMotion = "Down";
     yP += yDivI - yDivILast;
     rotateDown();
     rotateDown();
+    console.log(yMotion);
   } else {
     yMotion = "None"
     //console.log("Percent travelled in y direction: " + yP/yDivAmount); 
     yP = 0;
   }
+
+
 
   //document.getElementById('xMotionLabel').innerText = xMotion;
   //document.getElementById('yMotionLabel').innerText = yMotion;

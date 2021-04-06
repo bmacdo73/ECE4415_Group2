@@ -25,17 +25,17 @@ let yP = 0; //Percentage of distance in y axis travelled
 
 let onStart = false; //Check if the recording has started already
 
-const pixelThresh = 0.45; //Threshold at which pixels have enough movement to be counted
-const idealWidth = 310; //The ideal value for width the program will seek from the webcam
-const idealHeight = 240; //The ideal value for height the program will seek from the webcam
-const frameTime = 50; //Time in ms between frames
+const pixelThresh = 0.4; //Threshold at which pixels have enough movement to be counted
+const idealWidth = 720; //The ideal value for width the program will seek from the webcam
+const idealHeight = 480; //The ideal value for height the program will seek from the webcam
+const frameTime = 100; //Time in ms between frames
 const rMult = 0.299; //Multiplier for red values of pixels for weighted average
 const gMult = 0.587; //Multiplier for green values of pixels for weighted average
 const bMult = 0.114; //Multiplier for blue values of pixels for weighted average
 const xDivAmount = 3; //Amount of divisions in the x axis
 const yDivAmount = 2; //Amount of divisions in the y axis
-const xMult = 1.00; //How much more motion must be in new x division to count
-const yMult = 1.00; //How much more motion must be in new y division to count
+const xMult = 1.5; //How much more motion must be in new x division to count
+const yMult = 1.5; //How much more motion must be in new y division to count
 
 console.log("Script starting up!");
   video = document.createElement('video');

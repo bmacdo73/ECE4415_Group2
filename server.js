@@ -31,8 +31,8 @@ router.get("/", (req,res)=>{
 app.use('/api', router); // Set the routes at '/api'
 
 //start the server
-const port = process.env.port || 80;
-const ports = process.env.port || 443;
+const port = process.env.port || 3000;
+const ports = process.env.port || 3001;
 //app.listen(port, () => console.log("Listening on port " + port + "."));
 
 http.createServer(app).listen(port, () => console.log("Listening on port " + port + " for https"));

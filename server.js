@@ -25,6 +25,7 @@ app.use('/', express.static('static'));
 
 //load the index.html page
 router.get("/", (req,res)=>{
+    console.log("A new visitor");
     res.sendFile("index.html", {root: __dirname});
 });
 

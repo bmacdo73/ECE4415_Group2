@@ -8,8 +8,17 @@
 */
 
 const express = require("express");
+var https = require('https');
+var http = require('http');
+var fs = require('fs');
 const app = express();
 const router = express.Router();
+
+var options = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+};
+  
 
 // serve files in static' folder at root URL '/'
 app.use('/', express.static('static'));
@@ -22,5 +31,9 @@ router.get("/", (req,res)=>{
 app.use('/api', router); // Set the routes at '/api'
 
 //start the server
-const port = process.env.port || 3000;
-app.listen(port, () => console.log("Listening on port " + port + "."));
+const port = process.env.port || 80;
+const ports = process.env.port || 443;
+//app.listen(port, () => console.log("Listening on port " + port + "."));
+
+http.createServer(app).listen(port, () => console.log("Listening on port " + port + " for https"));
+https.createServer(options, app).listen(ports, () => console.log("Listening on port " + ports + " for https"));

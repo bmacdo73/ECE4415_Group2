@@ -43,17 +43,20 @@ console.log("Script starting up!");
   video.width = idealWidth;
   video.autoplay = true;
 
-if (navigator.mediaDevices.getUserMedia) {
-  navigator.mediaDevices.getUserMedia({ audio: false,video: {width: {ideal:idealWidth},height: {ideal:idealHeight} }})
-    .then(function (stream) {
-      console.log("Gets this far!");
-      video.srcObject = stream; 
+  try{
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ audio: false,video: {width: {ideal:idealWidth},height: {ideal:idealHeight} }})
+        .then(function (stream) {
+          console.log("Gets this far!");
+          video.srcObject = stream; 
+        }).catch(function (error) {
+          console.log("Something went wrong!");
+        });
+    }
+  }catch(err){
+    console.log("error: " + err);
+  }
 
-    })
-    // .catch(function (err0r) {
-    //   console.log("Something went wrong!");
-    // });
-}
 
 function startup() {
   console.log("Script starting up!");

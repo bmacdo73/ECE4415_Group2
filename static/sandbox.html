@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Sandbox | AGGV</title>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body   >
+    <h1 onload = 'startup()'>The AGGV Online Collection</h1>
+    <div class="cameraControlButtons">
+        <button name="rotateTestLeft" id="rotateTestLeft">Rotate Left</button>
+        <button name="rotateTestRight" id="rotateTestRight">Rotate Right</button>
+        <button name="rotateTestUp" id="rotateTestUp">Rotate Up</button>
+        <button name="rotateTestDown" id="rotateTestDown">Rotate Down</button>
+        <button id = "start">Begin Recording</button>
+    </div>
+</body>
+
+    <script src="https://threejs.org/build/three.min.js"></script>
+    <script type="module" src="sandbox.js"></script>
+    <script type="module" src="video.js"></script>
+
+</html>

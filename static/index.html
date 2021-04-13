@@ -4,26 +4,32 @@
 <head>
     <meta charset="utf-8">
     <title>Online Collection | AGGV</title>
+    <script src='script.js'></script>
     <style>
-        body {
-            margin: 0;
-        }
+
     </style>
 </head>
 
-<body   >
-    <h1 onload = 'startup()'>The AGGV Online Collection</h1>
-    <div class="cameraControlButtons">
-        <button name="rotateTestLeft" id="rotateTestLeft">Rotate Left</button>
-        <button name="rotateTestRight" id="rotateTestRight">Rotate Right</button>
-        <button name="rotateTestUp" id="rotateTestUp">Rotate Up</button>
-        <button name="rotateTestDown" id="rotateTestDown">Rotate Down</button>
-        <button id = "start">Begin Recording</button>
+<body onLoad="pageInit()">
+    <div><a href="https://aggv.ca/emuseum/collections">
+        <img src="./img/main-logo.png" alt="The AGGV Collection" width="165" height="114">
+    </a></div>
+    
+    <div>
+        <h2>Search</h2>
+        <div class="searchName">
+            <input id="searchBox" type="text" oninput="searchName(searchBox)" placeholder="🔎︎ Search the collection">
+        </div>
+        <div class="dynSearch" id="dynSearchDiv">
+            <p class="flavour" id="dynSearch"></p>
+            <ul id="searchResults">
+                <!--see lab1.js-->
+            </ul>
+        </div>
+        <br>
+        <ul id="displayList"></ul>
+        <br>
     </div>
 </body>
-
-    <script src="https://threejs.org/build/three.min.js"></script>
-    <script type="module" src="sandbox.js"></script>
-    <script type="module" src="video.js"></script>
 
 </html>

@@ -13,6 +13,8 @@ var http = require('http');
 var fs = require('fs');
 const app = express();
 const router = express.Router();
+//const querystring = require('querystring');
+
 
 var options = {
     key: fs.readFileSync('key.pem'),
@@ -28,6 +30,7 @@ router.get("/", (req,res)=>{
     console.log("A new visitor");
     res.sendFile("index.html", {root: __dirname});
 });
+
 
 app.use('/api', router); // Set the routes at '/api'
 

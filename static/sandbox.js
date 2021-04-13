@@ -62,51 +62,6 @@ function loadModel(filename, colour, mat) {
     });
 }
 
-// //add 3dbenchy
-// const loader = new GLTFLoader();
-// loader.load("./3d/3dbenchy.glb", function (gltf) {
-//     //define the material
-//     gltf.scene.traverse((child) => {
-//         if (child.isMesh) {
-//             child.material = new THREE.MeshPhongMaterial({ color: 0xff3f00, flatShading: true });
-//         }
-//     })
-//     scene.add(gltf.scene);
-//     console.log("3dbenchy.glb loaded successfully.");
-// }, undefined, function (error) {
-//     console.error(error);
-// });
-
-// //add Vancouver Thunderbird Totem Pole
-// loader.load("./3d/vancouverTotemPole.glb", function (gltf) {
-//     //define the material
-//     gltf.scene.traverse((child) => {
-//         if (child.isMesh) {
-//             child.material = new THREE.MeshStandardMaterial({ color: 0x2c2017, flatShading: true });
-//         }
-//     })
-//     gltf.scene.position.set(-0.075, 0, -0.1);
-//     scene.add(gltf.scene);
-//     console.log("vancouverTotemPole.glb loaded successfully.");
-// }, undefined, function (error) {
-//     console.error(error);
-// });
-
-// //add Dragon Netsuke
-// loader.load("./3d/dragonNetsuke.glb", function (gltf) {
-//     //define the material
-//     gltf.scene.traverse((child) => {
-//         if (child.isMesh) {
-//             child.material = new THREE.MeshPhongMaterial({ color: 0x420000, flatShading: true });
-//         }
-//     })
-//     gltf.scene.position.set(0.075, 0, -0.1);
-//     scene.add(gltf.scene);
-//     console.log("dragonNetsuke.glb loaded successfully.");
-// }, undefined, function (error) {
-//     console.error(error);
-// });
-
 //---------------------------------------------------------------------------------------------------------------
 
 //add lighting

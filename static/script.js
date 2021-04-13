@@ -67,7 +67,7 @@ function pageInit(){
 function searchName(id){
     //declarations
     let stringIn = id.value;
-    let alpha = /^[a-zA-Z\s]*$/; //objective C. only a-z or A-Z chars
+    let alpha = /^[a-zA-Z\s0-9]*$/; //objective C. only a-z or A-Z chars
 
     let validate = alpha.exec(stringIn); //validate the string
     let isStringValid = Boolean(validate);
@@ -167,7 +167,5 @@ function searchMyArr(query){
 
 function viewModel(filename, URL){
     console.log(filename);
-    // request.open("GET", URL, true);
-    // request.send(null);
     window.open(URL);
 }

@@ -10,7 +10,7 @@ function artPiece(Names, Img, Desc, URL){
 }
 let myArr = [];
 myArr.push(new artPiece("3dbenchy", "3dbenchy.png", "This is a small piece used in the setup of a 3D printer to test its alignment.", "/sandbox.html?f=3dbenchy&c=0xff3f00&m=p"));
-myArr.push(new artPiece("Thunderbird Totem Pole", "vancouverTotemPole.png", "A photoscan of a thunderbird totem pole, Vancouver.", "/sandbox.html?f=vancouverTotemPole&c=0x2c2017&m=s"));
+myArr.push(new artPiece("Thunderbird Totem Pole", "thunderbird.png", "A photoscan of a thunderbird totem pole, Vancouver.", "/sandbox.html?f=thunderbird&c=0x2c2017&m=s"));
 myArr.push(new artPiece("Dragon Netsuke", "dragonNetsuke.png", "A netsuke of a dragon, from the Auckland Museum collection.", "/sandbox.html?f=dragonNetsuke&c=0x420000&m=p"));
 // myArr.push(new artPiece("004", "Charmander", "4.png", "It has a preference for hot things. When it rains, steam is said to spout from the tip of its tail.", "Fire", ""));
 // myArr.push(new artPiece("005", "Charmeleon", "5.png", "It has a barbaric nature. In battle, it whips its fiery tail around and slashes away with sharp claws.", "Fire", ""));
@@ -54,8 +54,8 @@ function pageInit(){
         lDesc.innerHTML = myArr[i].Desc;
 
         //Appending all information to the HTML
-        lItem.appendChild(lName);
         lItem.appendChild(lImg);
+        lItem.appendChild(lName);
         lItem.appendChild(lDesc);
 
         //Final step add the newly made <li> to the existing <ul>
@@ -150,8 +150,8 @@ function searchMyArr(query){
 
 
                 //Appending all information to the HTML
-                searchLItem.appendChild(searchLName);
                 searchLItem.appendChild(searchLImg);
+                searchLItem.appendChild(searchLName);
                 searchLItem.appendChild(searchLDesc);
 
                 //Final step add the newly made <li> to the existing <ul>

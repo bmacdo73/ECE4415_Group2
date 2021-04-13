@@ -17,15 +17,14 @@
     </a></div>
     
     <div>
-        <h2>Search</h2>
         <div class="searchName">
+            <h2>Search</h2>
             <input id="searchBox" type="text" oninput="searchName(searchBox)" placeholder="🔎︎ Search the collection">
         </div>
+        <!-- dynamic search results below -->
         <div class="dynSearch" id="dynSearchDiv">
             <p class="flavour" id="dynSearch"></p>
-            <ul id="searchResults">
-                <!--see lab1.js-->
-            </ul>
+            <ul class="searchResults" id="searchResults"></ul>
         </div>
         <br>
         <ul id="displayList"></ul>

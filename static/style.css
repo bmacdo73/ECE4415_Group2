@@ -1,1 +1,59 @@
 /* css for landing page */
+
+body{
+    background-color: white;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-left: 60px;
+    margin-top: 40px;
+}
+
+ul{
+    list-style: none;
+    flex-wrap: wrap;
+    display: flex;
+    height: auto;
+}
+
+li{
+    border: 2px solid white;
+    margin: 4px;
+    max-width: auto;
+    flex: 1 0 25%;
+}
+
+button{
+    text-align: center;
+    background-color: white;
+    border: none;
+    font-size: large;
+    color: black;
+}
+
+img{
+    max-width: 80%;
+    max-height: 80%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+}
+
+a>img{
+    text-align: left;
+    margin-left: -10px;
+}
+
+div.searchName{
+    text-align: left;
+    /* margin-left: 60px; */
+}
+
+div.dynSearch{
+    background-color: #eeeeee;
+    margin-bottom: 20px;
+}
+
+ul.searchResults > li > *{
+    background-color: #eeeeee;
+    border: none;
+}

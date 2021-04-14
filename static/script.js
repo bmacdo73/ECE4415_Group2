@@ -36,16 +36,21 @@ function pageInit(){
         lName.innerText = myArr[i].Names;
         lName.setAttribute("URL",  myArr[i].URL);
         lName.setAttribute("class", "link");
+        //function to open the specific model in sandbox.html
         lName.onclick = function(){
             const URL = lName.getAttribute("URL");
-            // viewModel(lName.innerHTML);
-            viewModel(URL);
+            window.open(URL);
         };
 
         let lImg = document.createElement("img");
         let lImgSrcTemp = "./img/"+myArr[i].Img;
         lImg.setAttribute("src", lImgSrcTemp);
         lImg.setAttribute("alt", myArr[i].Names);
+        //function to open the specific model in sandbox.html
+        lImg.onclick = function(){
+            const URL = lName.getAttribute("URL");
+            window.open(URL);
+        };
 
         let lDesc = document.createElement("p");
         lDesc.innerHTML = myArr[i].Desc;
@@ -129,16 +134,21 @@ function searchMyArr(query){
                 searchLName.innerText = myArr[hits[i]].Names;
                 searchLName.setAttribute("URL", myArr[hits[i]].URL);
                 searchLName.setAttribute("class", "link");
+                //function to open the specific model in sandbox.html
                 searchLName.onclick = function () {
                     const URL = searchLName.getAttribute("URL");
-                    // viewModel(lName.innerHTML);
-                    viewModel(URL);
+                    window.open(URL);
                 };
 
                 let searchLImg = document.createElement("img");
                 let searchLImgSrcTemp = "./img/" + myArr[hits[i]].Img;
                 searchLImg.setAttribute("src", searchLImgSrcTemp);
                 searchLImg.setAttribute("alt", myArr[i].Names);
+                //function to open the specific model in sandbox.html
+                searchLImg.onclick = function () {
+                    const URL = searchLName.getAttribute("URL");
+                    window.open(URL);
+                };
                 
                 let searchLDesc = document.createElement("p");
                 searchLDesc.innerHTML = myArr[hits[i]].Desc;
@@ -158,8 +168,4 @@ function searchMyArr(query){
             pFlavour.appendChild(br);
         }
     }
-}
-
-function viewModel(URL){
-    window.open(URL);
 }

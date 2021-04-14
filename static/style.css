@@ -22,25 +22,41 @@ li{
 }
 
 button{
-    text-align: center;
+    text-align: left;
+    display: flex;
+    margin: 5px auto;
     background-color: white;
     border: none;
+    font-weight: bold;
     font-size: large;
     color: black;
+    width: 256px;
 }
 
 img{
-    max-width: 80%;
-    max-height: 80%;
-    display: block;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
     margin-left: auto;
     margin-right: auto;
-    width: auto;
+    width: 256px;
+}
+
+li > p{
+    text-align: left;
+    display: flex;
+    margin: 0 auto;
+    border: none;
+    color: black;
+    width: 256px;
 }
 
 a>img{
     text-align: left;
     margin-left: -10px;
+    max-width: auto;
+    max-height: auto;
+    width: auto;
 }
 
 div.searchName{

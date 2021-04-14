@@ -2,14 +2,16 @@ import { rotateUp, rotateDown, rotateLeft, rotateRight } from './sandbox.js';
 
 const modelParams = {
   flipHorizontal: true,   // flip e.g for video 
-  imageScaleFactor: 0.5,  // reduce input image size for gains in speed.
+  imageScaleFactor: 0.6,  // reduce input image size for gains in speed.
   maxNumBoxes: 1,        // maximum number of boxes to detect
   iouThreshold: 0.7,      // ioU threshold for non-max suppression
   scoreThreshold: 0.6,    // confidence threshold for predictions.
 }
 
 let video = document.createElement('video');
-let canvas = document.createElement('canvas');
+//let video = document.getElementById('video');
+//let canvas = document.createElement('canvas');
+let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d');
 let n = 0;
 let model;
@@ -20,7 +22,7 @@ let height;
 let onStart = false;
 const xThreshold = 0.1;
 const yThreshold = 0.1;
-const timer = 400;
+const timer = 250;
 
 
 // Start function
@@ -67,7 +69,7 @@ function stop(e) {
 }
 
 function runTime(){
-  console.log("run time now");
+  console.log("Hand tracking will start to run");
   xLast = 0;
   yLast = 0;
   setInterval(runDetection, timer);
@@ -76,6 +78,7 @@ function runTime(){
 function runDetection(){
   width = video.videoWidth;
   height = video.videoHeight;
+  console.log("Height, Width: " + height + ", " + width);
   let x = 0;
   let y = 0;
   let temp = [];
@@ -93,25 +96,25 @@ function runDetection(){
           let yAbs =  Math.floor(Math.abs(deltaY/yThreshold));
 
           if (deltaX > xThreshold){
-              //console.log("Move right " + xAbs);
+              console.log("Move right " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateRight();
               }
           } else if (deltaX * -1 > xThreshold){
-              //onsole.log("Move Left " + xAbs);
+              console.log("Move Left " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateLeft();
               }
           }
       
           if (deltaY > yThreshold){
-              //console.log("Move Down " + yAbs);
-              for(let i = 0; i < xAbs; i++){
+              console.log("Move Down " + yAbs);
+              for(let i = 0; i < yAbs; i++){
                 rotateDown();
               }
           } else if (deltaY * -1 > yThreshold){
-              //console.log("Move Up " + yAbs);
-              for(let i = 0; i < xAbs; i++){
+              console.log("Move Up " + yAbs);
+              for(let i = 0; i < yAbs; i++){
                 rotateUp();
               }
           }

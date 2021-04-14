@@ -4,9 +4,62 @@ body > div{
     background-color: white;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     margin-left: 60px;
-    margin-top: 40px;
+    margin-top: 30px;
 }
 
+/*
+*----------------------------------------------------------------------------------------------------------------
+*
+*    header
+*
+*----------------------------------------------------------------------------------------------------------------
+*/
+header{
+    display: flex;
+    border-bottom: 2px solid #eeeeee;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: small;
+}
+
+a{
+    display: block;
+    max-width: 150px;
+    max-height: 104px;
+    text-decoration: none;    
+}
+
+a:visited{
+    color: black;
+    text-decoration: none;
+}
+
+
+a>img{
+    text-align: left;
+    margin-left: -10px;
+    max-width: 150px;
+    max-height: 104px;
+    border-bottom-color: black;
+    border-bottom-width: 3px;
+}
+
+header > div.menuOptions{
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+div.menuOptions > a{
+    margin: 6%;
+}
+
+/*
+*----------------------------------------------------------------------------------------------------------------
+*
+*    list
+*
+*----------------------------------------------------------------------------------------------------------------
+*/
 ul{
     list-style: none;
     flex-wrap: wrap;
@@ -15,7 +68,7 @@ ul{
 }
 
 li{
-    border: 2px solid white;
+    /* border: 2px solid white; */
     margin: 4px;
     max-width: auto;
     flex: 1 0 25%;
@@ -51,22 +104,14 @@ li > p{
     width: 256px;
 }
 
-a>img{
-    text-align: left;
-    margin-left: -10px;
-    max-width: auto;
-    max-height: auto;
-    width: auto;
-}
-
 div.searchName{
     text-align: left;
-    /* margin-left: 60px; */
 }
 
 div.dynSearch{
     background-color: #eeeeee;
     margin-bottom: 20px;
+    border: none;
 }
 
 ul.searchResults > li > *{
@@ -74,6 +119,13 @@ ul.searchResults > li > *{
     border: none;
 }
 
+/*
+*----------------------------------------------------------------------------------------------------------------
+*
+*    footer
+*
+*----------------------------------------------------------------------------------------------------------------
+*/
 footer{
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-size:x-small;

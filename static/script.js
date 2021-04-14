@@ -10,14 +10,13 @@ function artPiece(Names, Img, Desc, URL){
 }
 let myArr = [];
 myArr.push(new artPiece("3dbenchy", "3dbenchy.png", "This is a small piece used in the setup of a 3D printer to test its alignment.", "/sandbox.html?f=3dbenchy&c=0xff3f00&m=p"));
-myArr.push(new artPiece("Thunderbird Totem Pole", "thunderbird.png", "A photoscan of a thunderbird totem pole, Vancouver.", "/sandbox.html?f=thunderbird&c=0x2c2017&m=s"));
-myArr.push(new artPiece("Dragon Netsuke", "dragonNetsuke.png", "A netsuke of a dragon, from the Auckland Museum collection.", "/sandbox.html?f=dragonNetsuke&c=0x420000&m=p"));
-// myArr.push(new artPiece("004", "Charmander", "4.png", "It has a preference for hot things. When it rains, steam is said to spout from the tip of its tail.", "Fire", ""));
-// myArr.push(new artPiece("005", "Charmeleon", "5.png", "It has a barbaric nature. In battle, it whips its fiery tail around and slashes away with sharp claws.", "Fire", ""));
-// myArr.push(new artPiece("006", "Charizard", "6.png", "It spits fire that is hot enough to melt boulders. It may cause forest fires by blowing flames.", "Fire", ""));
-// myArr.push(new artPiece("007", "Squirtle", "7.png", "When it retracts its long neck into its shell, it squirts out water with vigorous force.", "Water", ""));
-// myArr.push(new artPiece("008", "Wartortle", "8.png", "It is recognized as a symbol of longevity. If its shell has algae on it, that Wartortle is very old.", "Water", ""));
-// myArr.push(new artPiece("009", "Blastoise", "9.png", "It crushes its foe under its heavy body to cause fainting. In a pinch, it will withdraw inside its shell.", "Water", ""));
+myArr.push(new artPiece("Thunderbird Totem Pole", "thunderbird.png", "A thunderbird totem pole, Vancouver, BC.", "/sandbox.html?f=thunderbird&c=0x2c2017&m=s"));
+myArr.push(new artPiece("Dragon Netsuke", "dragonNetsuke.png", "A netsuke of a dragon. From the Auckland Museum, Auckland, New Zealand.", "/sandbox.html?f=dragonNetsuke&c=0x420000&m=p"));
+myArr.push(new artPiece("Kwakiutl Totem Pole", "kwakiutlTP.png", "Giant-Cannibal with eagle and copper plate in his hand, British Columbia, Kwakiutl Culture. From Musée du Cinquantenaire, Brussels, Belgium.", "/sandbox.html?f=kwakiutlTP&c=0x2c2017&m=s"));
+myArr.push(new artPiece("Lion Skull", "lionSkull.png", "A lion skull. From the Auckland Museum, Auckland, New Zealand.", "/sandbox.html?f=lionSkull&c=0xccbe95&m=p"));
+myArr.push(new artPiece('Praroditeljka, "Foremother"', "foremother.png", "A cobblestone sculpture from the Lepenski Vir culture, ~7000 BC, Belgrade, Serbia.", "/sandbox.html?f=foremother&c=0xbf9969&m=s"));
+myArr.push(new artPiece("Etruscan Boar Vessel", "boarVessel.png", "A ceramic boar vessel, ~600-500 BC, Etrsucan. From the Cleveland Museum of Art.", "/sandbox.html?f=boarVessel&c=0x0f0600&m=p"));
+myArr.push(new artPiece("Venus de Milo", "venusDeMilo.png", "An ancient Greek marble statue, ~130-100 BC, sculpted by Alexandros of Antioch. From the Louvre Museum, Paris, France.", "/sandbox.html?f=venusDeMilo&c=0x70706c&m=p"));
 
 
 //Info arrays for the search functions

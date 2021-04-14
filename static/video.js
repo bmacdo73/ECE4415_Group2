@@ -22,6 +22,7 @@ let height;
 let onStart = false;
 let onEnd = false;
 let interval;
+let testing = false;
 const xThreshold = 0.0556;
 const yThreshold = 0.1;
 const timer = 250;
@@ -59,11 +60,18 @@ btnStartCapture.onclick = function startCapture(){
   }
 }
 
+//Emd button
 let end = document.getElementById("end");
 end.onclick = function end(){
   if (!onEnd){
     onEnd = true;
   }
+}
+
+//Emd button
+let testBtn = document.getElementById("testButton");
+testBtn.onclick = function test(){
+  testing = !testing;
 }
 
 //Function to stop the webcam
@@ -103,7 +111,9 @@ function runDetection(){
   let temp = [];
   model.detect(video).then(predictions => {
       temp = predictions;
-      //model.renderPredictions(predictions, canvas, context, video); 
+      if(testing){
+        model.renderPredictions(predictions, canvas, context, video); 
+      }
       if(temp.length > 0){
           x = temp[0].bbox[0];
           y = temp[0].bbox[1];
@@ -115,24 +125,24 @@ function runDetection(){
           let yAbs =  Math.floor(Math.abs(deltaY/yThreshold));
 
           console.log("X, Y: " + xAbs + ", " + yAbs);
-          if ((deltaX > xThreshold * 2) && (xAbs <  10)){
+          if ((deltaX > xThreshold * 2) && (xAbs <  9)){
               console.log("Move right " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateRight();
               }
-          } else if ((deltaX * -1 > xThreshold * 2) && (xAbs < 10)){
+          } else if ((deltaX * -1 > xThreshold * 2) && (xAbs < 9)){
               console.log("Move Left " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateLeft();
               }
           }
       
-          if ((deltaY > yThreshold * 2) && (yAbs < 7)){
+          if ((deltaY > yThreshold * 2) && (yAbs < 6)){
               console.log("Move Down " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateDown();
               }
-          } else if ((deltaY * -1 > yThreshold * 2) && (yAbs < 7)){
+          } else if ((deltaY * -1 > yThreshold * 2) && (yAbs < 6)){
               console.log("Move Up " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateUp();

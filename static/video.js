@@ -62,8 +62,6 @@ let end = document.getElementById("end");
 end.onclick = function end(){
   if (!onEnd){
     onEnd = true;
-    handTrack.stopVideo(video); 
-    model.dispose();
   }
 }
 
@@ -82,8 +80,18 @@ function runTime(){
   console.log("Hand tracking will start to run");
   xLast = 0;
   yLast = 0;
-  setInterval(runDetection, timer);
+  interval();
 }
+
+let interval = setInterval(() =>{
+  runDetection();
+  if (onEnd){
+    clearInterval(interval);
+    handTrack.stopVideo(video); 
+    model.dispose();
+    console.log("Interval over, program ending");
+  }
+}, timer);
 
 function runDetection(){
   width = video.videoWidth;
@@ -105,24 +113,24 @@ function runDetection(){
           let xAbs =  Math.floor(Math.abs(deltaX/xThreshold));
           let yAbs =  Math.floor(Math.abs(deltaY/yThreshold));
 
-          if (deltaX > xThreshold * 2){
+          if ((deltaX > xThreshold * 2) && (deltaX < xThreshold * 5)){
               console.log("Move right " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateRight();
               }
-          } else if (deltaX * -1 > xThreshold * 2){
+          } else if ((deltaX * -1 > xThreshold * 2) && (deltaX * -1 < xThreshold * 5)){
               console.log("Move Left " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateLeft();
               }
           }
       
-          if (deltaY > yThreshold * 2){
+          if ((deltaY > yThreshold * 2) && (deltaY < yThreshold * 5)){
               console.log("Move Down " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateDown();
               }
-          } else if (deltaY * -1 > yThreshold * 2){
+          } else if ((deltaY * -1 > yThreshold * 2) && (deltaY * -1 < yThreshold * 5)){
               console.log("Move Up " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateUp();

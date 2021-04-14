@@ -39,5 +39,5 @@ const port = process.env.port || 3000;
 const ports = process.env.port || 3001;
 //app.listen(port, () => console.log("Listening on port " + port + "."));
 
-http.createServer(app).listen(port, () => console.log("Listening on port " + port + " for https"));
+http.createServer(app).listen(port, () => console.log("Listening on port " + port + " for http"));
 https.createServer(options, app).listen(ports, () => console.log("Listening on port " + ports + " for https"));

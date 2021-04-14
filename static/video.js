@@ -10,8 +10,8 @@ const modelParams = {
 
 let video = document.createElement('video');
 //let video = document.getElementById('video');
-//let canvas = document.createElement('canvas');
-let canvas = document.getElementById('canvas');
+let canvas = document.createElement('canvas');
+//let canvas = document.getElementById('canvas');
 let context = canvas.getContext('2d');
 let n = 0;
 let model;
@@ -84,7 +84,7 @@ function runDetection(){
   let temp = [];
   model.detect(video).then(predictions => {
       temp = predictions;
-      model.renderPredictions(predictions, canvas, context, video); 
+      //model.renderPredictions(predictions, canvas, context, video); 
       if(temp.length > 0){
           x = temp[0].bbox[0];
           y = temp[0].bbox[1];
@@ -95,24 +95,24 @@ function runDetection(){
           let xAbs =  Math.floor(Math.abs(deltaX/xThreshold));
           let yAbs =  Math.floor(Math.abs(deltaY/yThreshold));
 
-          if (deltaX > xThreshold){
+          if (deltaX > xThreshold * 2){
               console.log("Move right " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateRight();
               }
-          } else if (deltaX * -1 > xThreshold){
+          } else if (deltaX * -1 > xThreshold * 2){
               console.log("Move Left " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateLeft();
               }
           }
       
-          if (deltaY > yThreshold){
+          if (deltaY > yThreshold * 2){
               console.log("Move Down " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateDown();
               }
-          } else if (deltaY * -1 > yThreshold){
+          } else if (deltaY * -1 > yThreshold * 2){
               console.log("Move Up " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateUp();

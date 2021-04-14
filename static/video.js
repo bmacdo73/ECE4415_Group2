@@ -72,6 +72,15 @@ end.onclick = function end(){
 let testBtn = document.getElementById("testButton");
 testBtn.onclick = function test(){
   testing = !testing;
+  if(testing){
+    testing = false;
+    canvas.width = 0;
+    canvas.height = 0;
+  } else {
+    testing = true;
+    canvas.width = video.width;
+    canvas.height = video.height;
+  }
 }
 
 //Function to stop the webcam

@@ -8,7 +8,7 @@ const modelParams = {
   scoreThreshold: 0.6,    // confidence threshold for predictions.
 }
 
-let video = document.createElement('videoH');
+let video = document.createElement('video');
 //let video = document.getElementById('video');
 //let canvas = document.createElement('canvasH');
 let canvas = document.getElementById('canvas');
@@ -115,7 +115,7 @@ function runDetection(){
         //video = document.getElementById('video');
         //canvas = document.getElementById('canvas');
         //context = canvas.getContext('2d');
-        model.renderPredictions(predictions, canvas, context, video); 
+        model.renderPredictions(temp, canvas, context, video); 
       }
       if(temp.length > 0){
           x = temp[0].bbox[0];

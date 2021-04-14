@@ -114,24 +114,25 @@ function runDetection(){
           let xAbs =  Math.floor(Math.abs(deltaX/xThreshold));
           let yAbs =  Math.floor(Math.abs(deltaY/yThreshold));
 
-          if ((deltaX > xThreshold * 2) && (xAbs < xThreshold * 10)){
+          console.log("X, Y: " + xAbs + ", " + yAbs);
+          if ((deltaX > xThreshold * 2) && (xAbs < (xThreshold * 16))){
               console.log("Move right " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateRight();
               }
-          } else if ((deltaX * -1 > xThreshold * 2) && (xAbs < xThreshold * 10)){
+          } else if ((deltaX * -1 > xThreshold * 2) && (xAbs < (xThreshold * 16))){
               console.log("Move Left " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateLeft();
               }
           }
       
-          if ((deltaY > yThreshold * 2) && (yAbs < yThreshold * 7)){
+          if ((deltaY > yThreshold * 2) && (yAbs < (yThreshold * 8))){
               console.log("Move Down " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateDown();
               }
-          } else if ((deltaY * -1 > yThreshold * 2) && (yAbs  < yThreshold * 7)){
+          } else if ((deltaY * -1 > yThreshold * 2) && (yAbs  < (yThreshold * 8))){
               console.log("Move Up " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateUp();

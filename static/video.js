@@ -80,18 +80,18 @@ function runTime(){
   console.log("Hand tracking will start to run");
   xLast = 0;
   yLast = 0;
-  interval();
+  let interval = setInterval(() =>{
+    runDetection();
+    if (onEnd){
+      clearInterval(interval);
+      handTrack.stopVideo(video); 
+      model.dispose();
+      console.log("Interval over, program ending");
+    }
+  }, timer);
 }
 
-let interval = setInterval(() =>{
-  runDetection();
-  if (onEnd){
-    clearInterval(interval);
-    handTrack.stopVideo(video); 
-    model.dispose();
-    console.log("Interval over, program ending");
-  }
-}, timer);
+
 
 function runDetection(){
   width = video.videoWidth;

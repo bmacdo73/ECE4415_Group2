@@ -20,7 +20,7 @@ myArr.push(new artPiece("Venus de Milo", "venusDeMilo.png", "An ancient Greek ma
 
 
 //Info arrays for the search functions
-let pieceNames = [" 3dbenchy", " thunderbird totem pole", " dragon netsuke"];
+let pieceNames = [" 3dbenchy", " thunderbird totem pole", " dragon netsuke", " kwakiutl totem pole", " lion skull", ' praroditeljka, "foremother"', " etruscan boar vessel", " venus de milo"];
 
 let request = new XMLHttpRequest();
 
@@ -34,14 +34,12 @@ function pageInit(){
 
         let lName = document.createElement("button");
         lName.innerText = myArr[i].Names;
-        lName.setAttribute("filename",  myArr[i].Names);
         lName.setAttribute("URL",  myArr[i].URL);
         lName.setAttribute("class", "link");
         lName.onclick = function(){
-            const filename = lName.getAttribute("filename");
             const URL = lName.getAttribute("URL");
             // viewModel(lName.innerHTML);
-            viewModel(filename, URL);
+            viewModel(URL);
         };
 
         let lImg = document.createElement("img");
@@ -70,7 +68,7 @@ function searchName(id){
 
     let validate = alpha.exec(stringIn); //validate the string
     let isStringValid = Boolean(validate);
-    let newStringIn = validate;
+    let newStringIn = validate.toString().toLowerCase();
 
     let isStringSub63 = 1;
         
@@ -129,14 +127,12 @@ function searchMyArr(query){
 
                 let searchLName = document.createElement("button");
                 searchLName.innerText = myArr[hits[i]].Names;
-                searchLName.setAttribute("filename", myArr[hits[i]].Names);
                 searchLName.setAttribute("URL", myArr[hits[i]].URL);
                 searchLName.setAttribute("class", "link");
                 searchLName.onclick = function () {
-                    const filename = searchLName.getAttribute("filename");
                     const URL = searchLName.getAttribute("URL");
                     // viewModel(lName.innerHTML);
-                    viewModel(filename, URL);
+                    viewModel(URL);
                 };
 
                 let searchLImg = document.createElement("img");
@@ -164,7 +160,6 @@ function searchMyArr(query){
     }
 }
 
-function viewModel(filename, URL){
-    console.log(filename);
+function viewModel(URL){
     window.open(URL);
 }

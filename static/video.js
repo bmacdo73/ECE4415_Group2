@@ -21,6 +21,7 @@ let width;
 let height;
 let onStart = false;
 let onEnd = false;
+let interval;
 const xThreshold = 0.0556;
 const yThreshold = 0.1;
 const timer = 250;
@@ -80,20 +81,20 @@ function runTime(){
   console.log("Hand tracking will start to run");
   xLast = 0;
   yLast = 0;
-  let interval = setInterval(() =>{
+  interval = setInterval(() =>{
     runDetection();
-    if (onEnd){
-      clearInterval(interval);
-      handTrack.stopVideo(video); 
-      model.dispose();
-      console.log("Interval over, program ending");
-    }
   }, timer);
 }
 
 
 
 function runDetection(){
+  if(onEnd){
+    clearInterval(interval);
+    handTrack.stopVideo(video); 
+    model.dispose();
+    console.log("Interval over, program ending");
+  } else {
   width = video.videoWidth;
   height = video.videoHeight;
   console.log("Height, Width: " + height + ", " + width);
@@ -113,24 +114,24 @@ function runDetection(){
           let xAbs =  Math.floor(Math.abs(deltaX/xThreshold));
           let yAbs =  Math.floor(Math.abs(deltaY/yThreshold));
 
-          if ((deltaX > xThreshold * 2) && (deltaX < xThreshold * 5)){
+          if ((deltaX > xThreshold * 2) && (xAbs < xThreshold * 10)){
               console.log("Move right " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateRight();
               }
-          } else if ((deltaX * -1 > xThreshold * 2) && (deltaX * -1 < xThreshold * 5)){
+          } else if ((deltaX * -1 > xThreshold * 2) && (xAbs < xThreshold * 10)){
               console.log("Move Left " + xAbs);
               for(let i = 0; i < xAbs; i++){
                 rotateLeft();
               }
           }
       
-          if ((deltaY > yThreshold * 2) && (deltaY < yThreshold * 5)){
+          if ((deltaY > yThreshold * 2) && (yAbs < yThreshold * 7)){
               console.log("Move Down " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateDown();
               }
-          } else if ((deltaY * -1 > yThreshold * 2) && (deltaY * -1 < yThreshold * 5)){
+          } else if ((deltaY * -1 > yThreshold * 2) && (yAbs  < yThreshold * 7)){
               console.log("Move Up " + yAbs);
               for(let i = 0; i < yAbs; i++){
                 rotateUp();
@@ -140,4 +141,5 @@ function runDetection(){
           yLast = y;   
       }
   });
+}
 }

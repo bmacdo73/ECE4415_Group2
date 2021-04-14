@@ -116,7 +116,7 @@ btnTestRight.onclick = rotateRight;
 function rotateUp() {
     //console.log("\n" + "Negative rotation along the x-axis!");
     //console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
-    camera.position.applyAxisAngle(x, (-15 * Math.PI / 180));
+    camera.position.applyAxisAngle(x, (-9 * Math.PI / 180));
     controls.update();
     //console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");
 }
@@ -125,7 +125,7 @@ function rotateUp() {
 function rotateDown() {
     //console.log("\n" + "Positive rotation along the x-axis!");
     //console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
-    camera.position.applyAxisAngle(x, (15 * Math.PI / 180));
+    camera.position.applyAxisAngle(x, (9 * Math.PI / 180));
     controls.update();
     //console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");
 }
@@ -134,7 +134,7 @@ function rotateDown() {
 function rotateLeft() {
     //console.log("\n" + "Negative rotation along the y-axis!");
     //console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
-    camera.position.applyAxisAngle(y, (-15 * Math.PI / 180));
+    camera.position.applyAxisAngle(y, (-10 * Math.PI / 180));
     controls.update();
     //console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
 }
@@ -143,7 +143,7 @@ function rotateLeft() {
 function rotateRight() {
     //console.log("\n" + "Positive rotation along the y-axis!");
     //console.log("Old angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle());
-    camera.position.applyAxisAngle(y, (15 * Math.PI / 180));
+    camera.position.applyAxisAngle(y, (10 * Math.PI / 180));
     // scene.rotateZ(Math.PI / 2);
     controls.update();
     //console.log("New angle: azimuth=" + controls.getAzimuthalAngle() + "  polar=" + controls.getPolarAngle() + "\n" + " ");

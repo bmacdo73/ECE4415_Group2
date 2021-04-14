@@ -20,8 +20,8 @@ let yLast = 0;
 let width;
 let height;
 let onStart = false;
-const xThreshold = 0.05;
-const yThreshold = 0.05;
+const xThreshold = 0.0556;
+const yThreshold = 0.1;
 const timer = 250;
 
 

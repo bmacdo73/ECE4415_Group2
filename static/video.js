@@ -20,6 +20,7 @@ let yLast = 0;
 let width;
 let height;
 let onStart = false;
+let onEnd = false;
 const xThreshold = 0.0556;
 const yThreshold = 0.1;
 const timer = 250;
@@ -48,12 +49,21 @@ const start = async function() {
   });
 }
 
-
-var btnStartCapture = document.getElementById("start");
+//Start recording button
+let btnStartCapture = document.getElementById("start");
 btnStartCapture.onclick = function startCapture(){
   if (!onStart){
     onStart = true;
     start();
+  }
+}
+
+let end = document.getElementById("end");
+end.onclick = function end(){
+  if (!onEnd){
+    onEnd = true;
+    handTrack.stopVideo(video); 
+    model.dispose();
   }
 }
 

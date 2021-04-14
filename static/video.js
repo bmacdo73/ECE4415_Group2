@@ -71,15 +71,12 @@ end.onclick = function end(){
 //Emd button
 let testBtn = document.getElementById("testButton");
 testBtn.onclick = function test(){
-  testing = !testing;
   if(testing){
     testing = false;
-    canvas.width = 0;
-    canvas.height = 0;
+    canvas.hidden = true;
   } else {
     testing = true;
-    canvas.width = video.width;
-    canvas.height = video.height;
+    canvas.hidden = false;
   }
 }
 

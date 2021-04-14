@@ -1,94 +1,57 @@
 import { rotateUp, rotateDown, rotateLeft, rotateRight } from './sandbox.js';
 
-//FINAL VARIABLES
-let video = null; //Holds the video feed from the webcam
-let vidHeight = 0; //Video height
-let vidWidth = 0; //Video width
-
-var diffCanvas = null; // canvas to hold the difference
-var diffContext = null; //context for diffCanvas
-var diffImage = null; //image data from diffCanvas
-
-let xMotion = "None"; //The current detected motion in the x axis
-let yMotion = "None"; //The current detected motion in the y axis
-
-let yDiv = []; //The divisions for the y axis
-let xDiv = []; //The divisions for the x axis
-
-let xDivI = 0; //Index of biggest division in the x axis
-let yDivI = 0; //Index of biggest division in the y axis
-let xDivILast = 0; //Last index of the biggest division in the x axis
-let yDivILast = 0; //Last index of the biggest division in the y axis
-
-let xP = 0; //Percentage of distance in x axis travelled
-let yP = 0; //Percentage of distance in y axis travelled
-
-let onStart = false; //Check if the recording has started already
-
-const pixelThresh = 0.4; //Threshold at which pixels have enough movement to be counted
-const idealWidth = 720; //The ideal value for width the program will seek from the webcam
-const idealHeight = 480; //The ideal value for height the program will seek from the webcam
-const frameTime = 100; //Time in ms between frames
-const rMult = 0.299; //Multiplier for red values of pixels for weighted average
-const gMult = 0.587; //Multiplier for green values of pixels for weighted average
-const bMult = 0.114; //Multiplier for blue values of pixels for weighted average
-const xDivAmount = 2; //Amount of divisions in the x axis
-const yDivAmount = 2; //Amount of divisions in the y axis
-const xMult = 1.5; //How much more motion must be in new x division to count
-const yMult = 1.5; //How much more motion must be in new y division to count
-
-console.log("Script starting up!");
-  video = document.createElement('video');
-  video.height = idealHeight;
-  video.width = idealWidth;
-  video.autoplay = true;
-
-  try{
-    if (navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ audio: false,video: {width: {ideal:idealWidth},height: {ideal:idealHeight} }})
-        .then(function (stream) {
-          console.log("Gets this far!");
-          video.srcObject = stream; 
-        }).catch(function (error) {
-          console.log("Something went wrong!");
-        });
-    }
-  }catch(err){
-    console.log("error: " + err);
-  }
-
-
-function startup() {
-  console.log("Script starting up!");
-  video = document.createElement('video');
-  video.height = idealHeight;
-  video.width = idealWidth;
-  video.autoplay = true;
-
-  //TEST
-  //Initialise the array:
-  for (var i = 0; i < xDivAmount; i++){
-    xDiv.push(0);
-    yDiv.push(0);
-  }
+const modelParams = {
+  flipHorizontal: true,   // flip e.g for video 
+  imageScaleFactor: 0.5,  // reduce input image size for gains in speed.
+  maxNumBoxes: 1,        // maximum number of boxes to detect
+  iouThreshold: 0.7,      // ioU threshold for non-max suppression
+  scoreThreshold: 0.6,    // confidence threshold for predictions.
 }
+
+let video = document.createElement('video');
+let canvas = document.createElement('canvas');
+let context = canvas.getContext('2d');
+let n = 0;
+let model;
+let xLast = 0;
+let yLast = 0;
+let width;
+let height;
+let onStart = false;
+const xThreshold = 0.1;
+const yThreshold = 0.1;
+const timer = 400;
+
+
+// Start function
+const start = async function() {
+  model = await handTrack.load(modelParams);
+  console.log("Startup called");
+  handTrack.startVideo(video).then(status => {
+      console.log("Video started");
+      if(status){
+          if (navigator.mediaDevices.getUserMedia) {
+              navigator.mediaDevices.getUserMedia({ audio: false, video: true}).then(function (stream) {
+                  console.log("Stream Detected");
+                  video.srcObject = stream; 
+                  runTime();
+                }).catch(function (err0r) {
+                  console.log("Something went wrong!");
+                });
+            }
+      }
+      else{
+          console.log("Error: No status");
+      }
+  });
+}
+
 
 var btnStartCapture = document.getElementById("start");
 btnStartCapture.onclick = function startCapture(){
   if (!onStart){
-  onStart = true;
-  console.log("start capture runs!");
-  //TEST
-  vidHeight = video.videoHeight;
-  vidWidth = video.videoWidth;
-  console.log(vidHeight + ", " + vidWidth);
-  //Setup canvases
-  diffCanvas = document.createElement('canvas');
-  diffCanvas.height = vidHeight;
-  diffCanvas.width = vidWidth;
-  diffContext = diffCanvas.getContext('2d');
-
-  setInterval(blend, frameTime);  
+    onStart = true;
+    start();
   }
 }
 
@@ -96,15 +59,73 @@ btnStartCapture.onclick = function startCapture(){
 function stop(e) {
   var stream = video.srcObject;
   var tracks = stream.getTracks();
-
   for (var i = 0; i < tracks.length; i++) {
     var track = tracks[i];
     track.stop();
   }
-
   video.srcObject = null;
 }
 
+function runTime(){
+  console.log("run time now");
+  xLast = 0;
+  yLast = 0;
+  setInterval(runDetection, timer);
+}
+
+function runDetection(){
+  width = video.videoWidth;
+  height = video.videoHeight;
+  let x = 0;
+  let y = 0;
+  let temp = [];
+  model.detect(video).then(predictions => {
+      temp = predictions;
+      model.renderPredictions(predictions, canvas, context, video); 
+      if(temp.length > 0){
+          x = temp[0].bbox[0];
+          y = temp[0].bbox[1];
+
+          let deltaX = (x - xLast)/width;
+          let deltaY = (y - yLast)/height;
+      
+          let xAbs =  Math.floor(Math.abs(deltaX/xThreshold));
+          let yAbs =  Math.floor(Math.abs(deltaY/yThreshold));
+
+          if (deltaX > xThreshold){
+              //console.log("Move right " + xAbs);
+              for(let i = 0; i < xAbs; i++){
+                rotateRight();
+              }
+          } else if (deltaX * -1 > xThreshold){
+              //onsole.log("Move Left " + xAbs);
+              for(let i = 0; i < xAbs; i++){
+                rotateLeft();
+              }
+          }
+      
+          if (deltaY > yThreshold){
+              //console.log("Move Down " + yAbs);
+              for(let i = 0; i < xAbs; i++){
+                rotateDown();
+              }
+          } else if (deltaY * -1 > yThreshold){
+              //console.log("Move Up " + yAbs);
+              for(let i = 0; i < xAbs; i++){
+                rotateUp();
+              }
+          }
+          xLast = x;
+          yLast = y;   
+      }
+  });
+}
+
+/************************************************
+//OLD CODE
+************************************************/
+
+/*
 //Takes two frames from the webcam and compares them
 function blend() {
 
@@ -234,9 +255,9 @@ function blend() {
 
   //TEST
   //Print out the frame to the test canvas
-  /*
+  
   let testCtx = document.getElementById('testCanvas').getContext('2d');
-  testCtx.putImageData(diffImage,0,0);*/
+  testCtx.putImageData(diffImage,0,0);
 
   // draw current capture normally over diff, ready for next time
   diffContext.globalCompositeOperation = 'source-over';
@@ -244,6 +265,4 @@ function blend() {
 
   //console.log("Blend has finished");
 }
-
-
- 
+*/
